@@ -1,0 +1,271 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Wiki-Bot</title>
+	<meta property="og:description" content="Wiki-Bot is a bot with the purpose to easily search for and link to wiki pages. Wiki-Bot shows short descriptions and additional info about pages and is able to resolve redirects and follow interwiki links.">
+	<meta property="og:title" content="Wiki-Bot">
+	<meta property="og:site_name" content="MarkusRost">
+	<meta name="theme-color" content="#FEDC00">
+	<meta name="application-name" content="Wiki-Bot">
+	<meta property="og:image" content="https://gamepedia.cursecdn.com/commons_hydra/0/07/Hydraguy_fandompants.png" />
+	<link rel="icon" href="https://gamepedia.cursecdn.com/commons_hydra/9/93/Cursebot.png">
+	<style>
+		body
+		{
+			font-family: "Liberation Sans",Arial,Helvetica,FreeSans,sans-serif;
+			background-color: #E6EFF4;
+			margin: 20px;
+		}
+		
+		table.wikitable
+		{
+			background-color: #f8f9fa;
+			color: #222;
+			margin: 1em 0;
+			border: 1px solid #a2a9b1;
+			border-collapse: collapse;
+			border-spacing: 2px;
+		}
+		
+		table.wikitable > tr > th,
+		table.wikitable > * > tr > th
+		{
+			background-color: #eaecf0;
+			text-align: center;
+		}
+		
+		table.wikitable > tr > th,
+		table.wikitable > tr > td,
+		table.wikitable > * > tr > th,
+		table.wikitable > * > tr > td
+		{
+			border: 1px solid #a2a9b1;
+			padding: 0.2em 0.4em;
+		}
+		
+		p
+		{
+			line-height: inherit;
+			margin: 0.5em 0;
+		}
+		
+		code
+		{
+			color: #000;
+			background-color: #f8f9fa;
+			border: 1px solid #eaecf0;
+			border-radius: 2px;
+			padding: 1px 4px;
+			font-family: monospace,monospace;
+		}
+	</style>
+</head>
+<body>
+<p><b>Wiki-Bot</b> is a bot for <a rel="nofollow" class="external text" href="https://discord.com/">Discord</a> with the purpose to easily link and search <a href="http://mediawiki.org/wiki/" class="extiw" title="mw:">MediaWiki</a> sites like <a class="external text" href="https://www.gamepedia.com/">Gamepedia</a> and <a class="external text" href="https://www.fandom.com/">Fandom</a> wikis. <b>Wiki-Bot</b> shows short descriptions and additional info about pages and is able to resolve redirects and follow interwiki links.
+</p><p><b>Wiki-Bot</b> has translations for English, German, French, Dutch, Polish, Portuguese, Russian, Turkish and Chinese.
+</p><p><a rel="nofollow" class="external text" href="https://discord.com/oauth2/authorize?client_id=461189216198590464&amp;permissions=939912256&amp;scope=bot">Use this link to invite <b>Wiki-Bot</b> to your Discord server.</a>
+</p><p>Support server: <a rel="nofollow" class="external text" href="https://discord.gg/v77RTk5">https://discord.gg/v77RTk5</a>
+</p>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"><div class="toctitle" lang="de" dir="ltr"><h2>Inhaltsverzeichnis</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Setup"><span class="tocnumber">1</span> <span class="toctext">Setup</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Commands"><span class="tocnumber">2</span> <span class="toctext">Commands</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Admin"><span class="tocnumber">2.1</span> <span class="toctext">Admin</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#User_Verification"><span class="tocnumber">3</span> <span class="toctext">User Verification</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Recent_Changes_Webhook"><span class="tocnumber">4</span> <span class="toctext">Recent Changes Webhook</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Support_Server"><span class="tocnumber">5</span> <span class="toctext">Support Server</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Setup">Setup</span></h2>
+<p>After <a rel="nofollow" class="external text" href="https://discord.com/oauth2/authorize?client_id=461189216198590464&amp;permissions=939912256&amp;scope=bot">inviting</a> <b>Wiki-Bot</b> to your server you need to set the wiki you want to search by default. You do this with the <code>!wiki settings</code> command.
+</p>
+<ul><li>Change the wiki with <code>!wiki settings wiki &lt;url&gt;</code>
+<ul><li>Example: <code>!wiki settings wiki https://minecraft.gamepedia.com/Minecraft_Wiki</code></li></ul></li>
+<li>Change the language with <code>!wiki settings lang &lt;language&gt;</code>
+<ul><li>Example: <code>!wiki settings lang German</code></li></ul></li></ul>
+<h2><span class="mw-headline" id="Commands">Commands</span></h2>
+<p>For a full list with all commands use <code>!wiki help</code>
+</p>
+<table class="wikitable">
+<tbody><tr>
+<th>Command</th>
+<th>Description
+</th></tr>
+<tr>
+<td><code>!wiki &lt;search&nbsp;term&gt;</code></td>
+<td><b>Wiki-Bot</b> will answer with a link to a matching article in the wiki.
+</td></tr>
+<tr>
+<td><code>!wiki&nbsp;!&lt;wiki&gt; &lt;search&nbsp;term&gt;</code></td>
+<td><b>Wiki-Bot</b> will answer with a link to a matching article in the named Gamepedia wiki: <code>https://&lt;wiki&gt;.gamepedia.com/</code>
+</td></tr>
+<tr>
+<td><code>!wiki&nbsp;?&lt;wiki&gt; &lt;search&nbsp;term&gt;</code></td>
+<td><b>Wiki-Bot</b> will answer with a link to a matching article in the named Fandom wiki: <code>https://&lt;wiki&gt;.fandom.com/</code>
+</td></tr>
+<tr>
+<td><code>!wiki&nbsp;??&lt;wiki&gt; &lt;search&nbsp;term&gt;</code></td>
+<td><b>Wiki-Bot</b> will answer with a link to a matching article in the named Wikia wiki: <code>https://&lt;wiki&gt;.wikia.org/</code>
+</td></tr>
+<tr>
+<td><code>!wiki&nbsp;!!&lt;wiki&gt; &lt;search&nbsp;term&gt;</code></td>
+<td><b>Wiki-Bot</b> will answer with a link to a matching article in the named MediaWiki project.
+<p>Example: <code>!wiki&nbsp;!!en.wikipedia.org Cookie</code>
+</p>
+</td></tr>
+<tr>
+<td><code>!wiki User:&lt;username&gt;</code></td>
+<td><b>Wiki-Bot</b> will show some information about the user.
+</td></tr>
+<tr>
+<td><code>!wiki diff &lt;diff&gt; [&lt;oldid&gt;]</code></td>
+<td><b>Wiki-Bot</b> will answer with a link to the diff in the wiki.
+</td></tr>
+<tr>
+<td><code>!wiki diff &lt;page&nbsp;name&gt;</code></td>
+<td><b>Wiki-Bot</b> will answer with a link to the last diff on the article in the wiki.
+</td></tr>
+<tr>
+<td><code>!wiki random</code></td>
+<td><b>Wiki-Bot</b> will answer with a link to a random page in the wiki.
+</td></tr>
+<tr>
+<td><code>!wiki overview</code></td>
+<td><b>Wiki-Bot</b> will show some information and statistics about the wiki.
+</td></tr>
+<tr>
+<td><code>!wiki discussion &lt;search&nbsp;term&gt;</code></td>
+<td><b>Wiki-Bot</b> will answer with a link to a matching discussion thread in the Fandom wiki.
+</td></tr>
+<tr>
+<td><code>!wiki discussion post &lt;search&nbsp;term&gt;</code></td>
+<td><b>Wiki-Bot</b> will answer with a link to a matching discussion post in the Fandom wiki.
+</td></tr>
+<tr>
+<td><code>!wiki info</code></td>
+<td><b>Wiki-Bot</b> will introduce himself.
+</td></tr>
+<tr>
+<td><code>!wiki help</code></td>
+<td><b>Wiki-Bot</b> will list all the commands that he understands.
+</td></tr>
+<tr>
+<td><code>!wiki help &lt;bot&nbsp;command&gt;</code></td>
+<td><b>Wiki-Bot</b> will explain the command.
+</td></tr>
+<tr>
+<td><code>!wiki help admin</code></td>
+<td><b>Wiki-Bot</b> will list all administrator commands.
+</td></tr>
+<tr>
+<td><code>!wiki test</code></td>
+<td>If <b>Wiki-Bot</b> is active, he will answer! Otherwise not.
+</td></tr></tbody></table>
+<p>If you got an unwanted response, you can react with 🗑️ to his message and <b>Wiki-Bot</b> will delete it.
+</p>
+<h3><span class="mw-headline" id="Admin">Admin</span></h3>
+<p>For a full list with all administrator commands use <code>!wiki help admin</code>
+</p>
+<table class="wikitable">
+<tbody><tr>
+<th>Command</th>
+<th>Description
+</th></tr>
+<tr>
+<td><code>!wiki help admin</code></td>
+<td><b>Wiki-Bot</b> will list all administrator commands.
+</td></tr>
+<tr>
+<td><code>!wiki settings</code></td>
+<td><b>Wiki-Bot</b> will change the settings for the server.
+</td></tr>
+<tr>
+<td><code>!wiki settings lang &lt;language&gt;</code></td>
+<td><b>Wiki-Bot</b> will change the language for the server.
+</td></tr>
+<tr>
+<td><code>!wiki settings wiki &lt;wiki&gt;</code></td>
+<td><b>Wiki-Bot</b> will change the default wiki for the server.
+</td></tr>
+<tr>
+<td><code>!wiki settings channel</code></td>
+<td><b>Wiki-Bot</b> will change the channel overwrites for the current channel.
+</td></tr>
+<tr>
+<td><code>!wiki verification</code></td>
+<td><b>Wiki-Bot</b> will change the wiki verifications used by the <code>!wiki verify</code> command.
+</td></tr>
+<tr>
+<td><code>!wiki verification add &lt;role&gt;</code></td>
+<td><b>Wiki-Bot</b> will add a new wiki verification.
+<p>Accepts a <code>|</code> separated list.
+</p>
+</td></tr>
+<tr>
+<td><code>!wiki verification &lt;id&gt; channel &lt;new&nbsp;channel&gt;</code></td>
+<td><b>Wiki-Bot</b> will change the channel for the wiki verification.
+<p>Accepts a <code>|</code> separated list.
+</p>
+</td></tr>
+<tr>
+<td><code>!wiki verification &lt;id&gt; role &lt;new&nbsp;role&gt;</code></td>
+<td><b>Wiki-Bot</b> will change the role for the wiki verification.
+<p>Accepts a <code>|</code> separated list.
+</p>
+</td></tr>
+<tr>
+<td><code>!wiki verification &lt;id&gt; editcount &lt;new&nbsp;edit&nbsp;count&gt;</code></td>
+<td><b>Wiki-Bot</b> will change the minimal edit count for the wiki verification.
+</td></tr>
+<tr>
+<td><code>!wiki verification &lt;id&gt; usergroup &lt;new&nbsp;user&nbsp;group&gt;</code></td>
+<td><b>Wiki-Bot</b> will change the user group for the wiki verification.
+<p>Accepts a <code>|</code> separated list.
+</p>
+<ul><li>Provide <code>AND</code> as the first list entry to make all provided user groups required.</li></ul>
+</td></tr>
+<tr>
+<td><code>!wiki verification &lt;id&gt; accountage &lt;new&nbsp;account&nbsp;age&gt;</code></td>
+<td><b>Wiki-Bot</b> will change the minimal account age (in days) for the wiki verification.
+</td></tr>
+<tr>
+<td><code>!wiki verification &lt;id&gt; rename</code></td>
+<td><b>Wiki-Bot</b> will change if the users Discord nickname should be changed to their wiki username for the wiki verification.
+</td></tr>
+<tr>
+<td><code>!wiki rcscript</code></td>
+<td><b>Wiki-Bot</b> will change the recent changes webhook.
+</td></tr>
+<tr>
+<td><code>!wiki voice</code></td>
+<td><b>Wiki-Bot</b> will try to give everyone in a voice channel a specific role.
+</td></tr>
+<tr>
+<td><code>!wiki pause @Wiki-Bot</code></td>
+<td><b>Wiki-Bot</b> will ignore all commands on this server, except a few admin commands.
+</td></tr></tbody></table>
+<h2><span class="mw-headline" id="User_Verification">User Verification</span></h2>
+<p>Using the <code>!wiki verify &lt;wiki username&gt;</code> command, users are able to verify themselves as a specific wiki user by using the Discord field on their wiki profile. If the user matches and user verifications are set up on the server, <b>Wiki-Bot</b> will give them the roles for all verification entries they matched.
+</p><p>Using the <code>!wiki verification</code> command, admins can add up to 10 verification entries on a server. Every verification entry allows for multiple restrictions on when a user should match the verification.
+</p>
+<ul><li>Channel to use the <code>!wiki verify</code> command in.</li>
+<li>Role to get when matching the verification entry.</li>
+<li>Required edit count on the wiki to match the verification entry.</li>
+<li>Required user group to be a member of on the wiki to match the verification entry.</li>
+<li>Required account age in days to match the verification entry.</li>
+<li>Whether the Discord users nickname should be set to their wiki username when they match the verification entry.</li></ul>
+<p>See the <a href="#Admin">admin commands</a> or <code>!wiki help verification</code> on how to change the wiki verification entries on the server.
+</p>
+<h2><span class="mw-headline" id="Recent_Changes_Webhook">Recent Changes Webhook</span></h2>
+<p><b>Wiki-Bot</b> is able to run a recent changes webhook based on <a rel="nofollow" class="external text" href="https://gitlab.com/piotrex43/RcGcDw">RcGcDw</a> by using the <code>!wiki rcscript</code> command. The recent changes can be displayed in compact text messages with inline links or embed messages with edit tags and category changes.
+</p><p>Requirements to add a recent changes webhook:
+</p>
+<ul><li>The wiki needs to run on <a href="http://mediawiki.org/wiki/MediaWiki_1.30" class="extiw" title="mw:MediaWiki 1.30">MediaWiki 1.30</a> or higher.</li>
+<li>The system message <code>MediaWiki:Custom-RcGcDw</code> need to be set to the Discord server id.</li></ul>
+</body>
+</html>
+
