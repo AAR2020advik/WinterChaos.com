@@ -46,3 +46,43 @@ body
 			padding: 1px 4px;
 			font-family: monospace,monospace;
 		}
+
+.navs {
+
+
+ margin-top: 20px;
+
+
+
+}
+
+
+    
+.navs li {
+
+    list-style: none;
+    float: left;
+
+
+}
+
+.navs ul {
+
+    margin: 0;
+    padding: 0;
+}
+
+
+.navs a {
+    display: block;
+    color: #FFF;
+    text-decoration: none;
+    padding: 10px 20px;
+    transition-property: color;
+    transition-duration: 2s;
+    
+}
+.navs a:hover{
+
+    background-color: #e5e9dc;
+}
